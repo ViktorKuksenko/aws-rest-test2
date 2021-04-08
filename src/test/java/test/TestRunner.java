@@ -5,10 +5,6 @@ import java.util.List;
 import services.AwsService;
 
 public class TestRunner {
-
-  public static final String HTTP_GET_METHOD = "GET";
-  public static final String HTTP_PUT_METHOD = "PUT";
-  public static final String HTTP_DELETE_METHOD = "DELETE";
   public static final String X_AMZ_CONTENT_SHA_256_HEADER = "x-amz-content-sha256";
   public static final String X_AMZ_DATE_HEADER = "x-amz-date";
   public static final String HOST_HEADER = "host";

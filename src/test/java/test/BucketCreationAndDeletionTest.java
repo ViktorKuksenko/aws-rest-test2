@@ -1,6 +1,6 @@
 package test;
 
-import static constants.AssertConstants.FULL_CONTROL;
+import static constants.AssertConstants.*;
 
 import helpers.TimeUtils;
 import helpers.XmlUtils;
@@ -24,15 +24,15 @@ public class BucketCreationAndDeletionTest extends TestRunner {
             ,
             "C:\\Users\\vkukse\\Desktop\\EducationProjects\\rest-onedrive\\src\\files\\data\\test.xml"
             , "application/xml", "private", Arrays.asList(FULL_CONTROL))},
-//        {new BucketModel(String.format("testBucket%s", TimeUtils.getCurrentLocalTimestamp())
-//            , "C:\\Users\\vkukse\\Desktop\\EducationProjects\\rest-onedrive\\src\\files\\data\\test.xml"
-//            , "application/xml", "public-read", Arrays.asList(FULL_CONTROL, READ))},
-//        {new BucketModel(String.format("testBucket%s", TimeUtils.getCurrentLocalTimestamp())
-//            , "C:\\Users\\vkukse\\Desktop\\EducationProjects\\rest-onedrive\\src\\files\\data\\test.xml"
-//            , "application/xml", "public-read-write", Arrays.asList(FULL_CONTROL, READ, WRITE))},
-//        {new BucketModel(String.format("testBucket%s", TimeUtils.getCurrentLocalTimestamp())
-//            , "C:\\Users\\vkukse\\Desktop\\EducationProjects\\rest-onedrive\\src\\files\\data\\test.xml"
-//            , "application/xml", "authenticated-read", Arrays.asList(FULL_CONTROL, READ))}
+        {new BucketModel(String.format("testBucket%s", TimeUtils.getCurrentLocalTimestamp())
+            , "C:\\Users\\vkukse\\Desktop\\EducationProjects\\rest-onedrive\\src\\files\\data\\test.xml"
+            , "application/xml", "public-read", Arrays.asList(FULL_CONTROL, READ))},
+        {new BucketModel(String.format("testBucket%s", TimeUtils.getCurrentLocalTimestamp())
+            , "C:\\Users\\vkukse\\Desktop\\EducationProjects\\rest-onedrive\\src\\files\\data\\test.xml"
+            , "application/xml", "public-read-write", Arrays.asList(FULL_CONTROL, READ, WRITE))},
+        {new BucketModel(String.format("testBucket%s", TimeUtils.getCurrentLocalTimestamp())
+            , "C:\\Users\\vkukse\\Desktop\\EducationProjects\\rest-onedrive\\src\\files\\data\\test.xml"
+            , "application/xml", "authenticated-read", Arrays.asList(FULL_CONTROL, READ))}
     };
   }
 

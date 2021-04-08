@@ -21,15 +21,15 @@ public class ObjectCreationAndDeletionTest extends TestRunner {
         {new ObjectModel("restassured", "C:\\Users\\vkukse\\Desktop\\EducationProjects\\"
             + "rest-onedrive\\src\\files\\data\\12mbtest.txt", String.format("/test/test%s",
             TimeUtils.getCurrentLocalTimestamp()), "text/txt")},
-//        {new ObjectModel("restassured", "C:\\Users\\vkukse\\Desktop\\EducationProjects\\"
-//            + "rest-onedrive\\src\\files\\data\\test.txt", String.format("/test/test%s",
-//            TimeUtils.getCurrentLocalTimestamp()), "text/txt")},
-//        {new ObjectModel("restassured", "C:\\Users\\vkukse\\Desktop\\EducationProjects\\"
-//            + "rest-onedrive\\src\\files\\data\\100mbtest.txt", String.format("/test/test%s",
-//            TimeUtils.getCurrentLocalTimestamp()), "text/txt")},
-//        {new ObjectModel("restassured", "C:\\Users\\vkukse\\Desktop\\EducationProjects\\"
-//            + "rest-onedrive\\src\\files\\data\\CatJPEG.jpg", String.format("/test/test%s",
-//            TimeUtils.getCurrentLocalTimestamp()), "image/jpeg")},
+        {new ObjectModel("restassured", "C:\\Users\\vkukse\\Desktop\\EducationProjects\\"
+            + "rest-onedrive\\src\\files\\data\\test.txt", String.format("/test/test%s",
+            TimeUtils.getCurrentLocalTimestamp()), "text/txt")},
+        {new ObjectModel("restassured", "C:\\Users\\vkukse\\Desktop\\EducationProjects\\"
+            + "rest-onedrive\\src\\files\\data\\100mbtest.txt", String.format("/test/test%s",
+            TimeUtils.getCurrentLocalTimestamp()), "text/txt")},
+        {new ObjectModel("restassured", "C:\\Users\\vkukse\\Desktop\\EducationProjects\\"
+            + "rest-onedrive\\src\\files\\data\\CatJPEG.jpg", String.format("/test/test%s",
+            TimeUtils.getCurrentLocalTimestamp()), "image/jpeg")},
     };
   }
 
