@@ -29,7 +29,7 @@ public class ObjectCreationAndDeletionTest extends TestRunner {
             TimeUtils.getCurrentLocalTimestamp()), "text/txt")},
         {new ObjectModel("restassured", "C:\\Users\\vkukse\\Desktop\\EducationProjects\\"
             + "rest-onedrive\\src\\files\\data\\CatJPEG.jpg", String.format("/test/test%s",
-            TimeUtils.getCurrentLocalTimestamp()), "image/jpeg")},
+            TimeUtils.getCurrentLocalTimestamp()), "image/jpeg")}
     };
   }
 
@@ -61,8 +61,6 @@ public class ObjectCreationAndDeletionTest extends TestRunner {
         .setPathToFile(objectModel.getFilePath())
         .setCanonicalUri(objectModel.getUri())
         .setBucketName(objectModel.getBucketName())
-        .setCanonicalHeaders(canonicalHeaders)
-        .setSignedHeaders(signedHeaders)
         .setHashPayloadAsAString(false)
         .setContentType(objectModel.getContentType());
     return awsService.createObject();

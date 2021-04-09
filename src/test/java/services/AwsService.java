@@ -14,6 +14,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,11 @@ public class AwsService {
   private String contentType;
   private boolean hashPayloadAsAString;
   private static final String REQUEST_ALGORITHM = "AWS4-HMAC-SHA256";
-  public static final String SERVICE_NAME = "s3";
+  private static final String SERVICE_NAME = "s3";
+  private static final String X_AMZ_CONTENT_SHA_256_HEADER = "x-amz-content-sha256";
+  private static final String X_AMZ_DATE_HEADER = "x-amz-date";
+  private static final String HOST_HEADER = "host";
+  private static final String X_AMZ_ACL_HEADER = "x-amz-acl";
 
   public AwsService() {
     PropertiesUtils propertiesUtils = new PropertiesUtils();
@@ -51,6 +56,8 @@ public class AwsService {
             + "config.properties");
     regionName = configProperties.getProperty("aws.regionName");
 
+    canonicalHeaders = Arrays.asList(X_AMZ_CONTENT_SHA_256_HEADER, X_AMZ_DATE_HEADER);
+    signedHeaders = Arrays.asList(HOST_HEADER, X_AMZ_CONTENT_SHA_256_HEADER, X_AMZ_DATE_HEADER);
     OffsetDateTime now = OffsetDateTime.now(ZoneOffset.UTC);
     timestamp = TimeUtils.getTimeStamp(now);
     date = TimeUtils.getDate(now);
@@ -72,16 +79,6 @@ public class AwsService {
 
   public AwsService setBucketName(String bucketName) {
     this.bucketName = bucketName;
-    return this;
-  }
-
-  public AwsService setCanonicalHeaders(List<String> canonicalHeaders) {
-    this.canonicalHeaders = canonicalHeaders;
-    return this;
-  }
-
-  public AwsService setSignedHeaders(List<String> signedHeaders) {
-    this.signedHeaders = signedHeaders;
     return this;
   }
 
@@ -298,6 +295,10 @@ public class AwsService {
 
   public Response createBucket() {
     httpMethod = "PUT";
+    canonicalHeaders = Arrays
+        .asList(X_AMZ_ACL_HEADER, X_AMZ_CONTENT_SHA_256_HEADER, X_AMZ_DATE_HEADER);
+    signedHeaders = Arrays
+        .asList(HOST_HEADER, X_AMZ_ACL_HEADER, X_AMZ_CONTENT_SHA_256_HEADER, X_AMZ_DATE_HEADER);
     RestAssured.baseURI = "https://" + getBaseUri();
     RestAssured.urlEncodingEnabled = false;
     Map<String, Object> headerMap = new HashMap<>();

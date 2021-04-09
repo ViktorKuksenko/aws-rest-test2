@@ -53,16 +53,11 @@ public class BucketCreationAndDeletionTest extends TestRunner {
   }
 
   private Response createBucket(BucketModel bucketModel) {
-    List<String> canonicalHeaders = Arrays
-        .asList(X_AMZ_ACL_HEADER, X_AMZ_CONTENT_SHA_256_HEADER, X_AMZ_DATE_HEADER);
-    List<String> signedHeaders = Arrays
-        .asList(HOST_HEADER, X_AMZ_ACL_HEADER, X_AMZ_CONTENT_SHA_256_HEADER, X_AMZ_DATE_HEADER);
+
     AwsService awsService = AwsService.getInstance()
         .setPayload(bucketModel.getFilePath())
         .setCanonicalUri("")
         .setBucketName(bucketModel.getBucketName())
-        .setCanonicalHeaders(canonicalHeaders)
-        .setSignedHeaders(signedHeaders)
         .setAcl(bucketModel.getAcl())
         .setPathToFile(bucketModel.getFilePath())
         .setContentType(bucketModel.getContentType())
