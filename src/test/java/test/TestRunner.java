@@ -13,7 +13,7 @@ public class TestRunner {
   List<String> signedHeaders = Arrays
       .asList(HOST_HEADER, X_AMZ_CONTENT_SHA_256_HEADER, X_AMZ_DATE_HEADER);
 
-  public AwsService commonRequest(String bucketName) {
+  protected AwsService commonRequest(String bucketName) {
     AwsService awsService = AwsService.getInstance()
         .setPayload("")
         .setCanonicalHeaders(canonicalHeaders)
