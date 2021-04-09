@@ -116,12 +116,12 @@ public class AwsService {
     return hashedPayLoad;
   }
 
-  String getEncryptedCanonicalRequest(String canonicalRequest) {
+  private String getEncryptedCanonicalRequest(String canonicalRequest) {
     return Sha256Utils.getHexString(Sha256Utils.generateSHA256Hash(canonicalRequest
         , "SHA-256"));
   }
 
-  byte[] getEncryptedSignInKey(String awsSecretAccessKey, String dateRegionKey
+  private byte[] getEncryptedSignInKey(String awsSecretAccessKey, String dateRegionKey
       , String region, String service) {
     byte[] signInKey = null;
     try {
@@ -135,7 +135,7 @@ public class AwsService {
     return signInKey;
   }
 
-  String getAuthenticationSignature(String stringToSign, byte[] signInKey) {
+  private String getAuthenticationSignature(String stringToSign, byte[] signInKey) {
     String signature = "";
     try {
       signature += Sha256Utils
@@ -148,7 +148,7 @@ public class AwsService {
     return signature.trim();
   }
 
-  String getSignedHeaders() {
+  private String getSignedHeaders() {
     StringBuilder stringBuilder = new StringBuilder("");
     if (!signedHeaders.isEmpty()) {
       for (int i = 0; i < signedHeaders.size(); i++) {
@@ -168,7 +168,7 @@ public class AwsService {
     return String.format("%s.%s.%s.amazonaws.com", bucketName, SERVICE_NAME, regionName);
   }
 
-  protected String getCanonicalRequest() {
+  private String getCanonicalRequest() {
     StringBuilder canonicalRequest = new StringBuilder("");
 
     canonicalRequest.append(httpMethod)
@@ -227,19 +227,19 @@ public class AwsService {
     return stringBuilder.toString();
   }
 
-  protected String getStringToSignIn() {
+  private String getStringToSignIn() {
     String stringToSignIn = String.format("%s\n%s\n%s/%s/%s/aws4_request\n%s", REQUEST_ALGORITHM
         , timestamp, date, regionName, SERVICE_NAME
         , getEncryptedCanonicalRequest(getCanonicalRequest()));
     return stringToSignIn;
   }
 
-  protected String getSignature() {
+  private String getSignature() {
     byte[] signInKey = getEncryptedSignInKey(awsSecretAccessKeyId, date, regionName, SERVICE_NAME);
     return getAuthenticationSignature(getStringToSignIn(), signInKey);
   }
 
-  protected String buildRequestData() {
+  private String buildRequestData() {
     String credentialScope = String.format("%s/%s/%s/aws4_request", date, regionName, SERVICE_NAME);
     String authorizationString = String.format("%s Credential=%s/%s, SignedHeaders=%s, Signature="
             + "%s", REQUEST_ALGORITHM, awsAccessKeyId, credentialScope, getSignedHeaders()
@@ -247,7 +247,7 @@ public class AwsService {
     return authorizationString;
   }
 
-  public RequestSpecification getCommonRequestSpecification(boolean addCanonicalUri) {
+  private RequestSpecification getCommonRequestSpecification(boolean addCanonicalUri) {
     String baseUri = "";
     if (addCanonicalUri) {
       baseUri = "https://" + getBaseUri() + canonicalUri;
