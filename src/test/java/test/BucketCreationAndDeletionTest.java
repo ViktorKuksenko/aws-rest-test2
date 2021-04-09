@@ -37,8 +37,7 @@ public class BucketCreationAndDeletionTest extends TestRunner {
   }
 
   @Test(dataProvider = "bucketCreationData")
-  public void awsBucketCreationWithAclPermissionsAndDeletionTest(
-      BucketModel bucketModel) {
+  public void awsBucketCreationWithAclPermissionsAndDeletionTest(BucketModel bucketModel) {
     Response bucketCreationResponse = createBucket(bucketModel);
     bucketCreationResponse.then().assertThat().statusCode(200);
     Response aclResponse = listBucketAcl(bucketModel);

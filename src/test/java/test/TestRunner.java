@@ -13,21 +13,6 @@ public class TestRunner {
   List<String> signedHeaders = Arrays
       .asList(HOST_HEADER, X_AMZ_CONTENT_SHA_256_HEADER, X_AMZ_DATE_HEADER);
 
-//  public <T> AwsService commonRequest(T model, String httpMethod) {
-//    AwsService awsService = AwsService.getInstance()
-//        .setHttpMethod(httpMethod)
-//        .setPayload("")
-//        .setCanonicalHeaders(canonicalHeaders)
-//        .setSignedHeaders(signedHeaders)
-//        .setHashPayloadAsAString(true);
-//    if (model instanceof BucketModel) {
-//      awsService.setBucketName(((BucketModel) model).getBucketName());
-//    } else if (model instanceof ObjectModel) {
-//      awsService.setBucketName(((ObjectModel) model).getBucketName());
-//    }
-//    return awsService;
-//  }
-
   public AwsService commonRequest(String bucketName) {
     AwsService awsService = AwsService.getInstance()
         .setPayload("")
