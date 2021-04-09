@@ -16,7 +16,7 @@ import services.AwsService;
 public class ObjectCreationAndDeletionTest extends TestRunner {
 
   @DataProvider
-  public Object[][] uploadObjectsData() {
+  private Object[][] uploadObjectsData() {
     return new Object[][]{
         {new ObjectModel("restassured", "C:\\Users\\vkukse\\Desktop\\EducationProjects\\"
             + "rest-onedrive\\src\\files\\data\\12mbtest.txt", String.format("/test/test%s",
@@ -55,7 +55,7 @@ public class ObjectCreationAndDeletionTest extends TestRunner {
     deleteBucketResponse.then().statusCode(204);
   }
 
-  public Response createObject(ObjectModel objectModel) {
+  private Response createObject(ObjectModel objectModel) {
     AwsService awsService = AwsService.getInstance()
         .setPayload(objectModel.getFilePath())
         .setPathToFile(objectModel.getFilePath())
@@ -68,12 +68,12 @@ public class ObjectCreationAndDeletionTest extends TestRunner {
     return awsService.createObject();
   }
 
-  public Response getBucketContents(ObjectModel objectModel) {
+  private Response getBucketContents(ObjectModel objectModel) {
     return commonRequest(objectModel.getBucketName()).setCanonicalUri("")
         .getBucketContents();
   }
 
-  public Response deleteBucketContents(ObjectModel objectModel) {
+  private Response deleteBucketContents(ObjectModel objectModel) {
     return commonRequest(objectModel.getBucketName())
         .setCanonicalUri(objectModel.getUri())
         .deleteObject();

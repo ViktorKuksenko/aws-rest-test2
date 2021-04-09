@@ -18,7 +18,7 @@ import services.AwsService;
 public class BucketCreationAndDeletionTest extends TestRunner {
 
   @DataProvider
-  public Object[][] bucketCreationData() {
+  private Object[][] bucketCreationData() {
     return new Object[][]{
         {new BucketModel(String.format("testBucket%s", TimeUtils.getCurrentLocalTimestamp())
             ,
@@ -52,7 +52,7 @@ public class BucketCreationAndDeletionTest extends TestRunner {
     deleteBucket(bucketModel).then().assertThat().statusCode(204);
   }
 
-  public Response createBucket(BucketModel bucketModel) {
+  private Response createBucket(BucketModel bucketModel) {
     List<String> canonicalHeaders = Arrays
         .asList(X_AMZ_ACL_HEADER, X_AMZ_CONTENT_SHA_256_HEADER, X_AMZ_DATE_HEADER);
     List<String> signedHeaders = Arrays
@@ -70,12 +70,12 @@ public class BucketCreationAndDeletionTest extends TestRunner {
     return awsService.createBucket();
   }
 
-  public Response listBucketAcl(BucketModel bucketModel) {
+  private Response listBucketAcl(BucketModel bucketModel) {
     return commonRequest(bucketModel.getBucketName()).setCanonicalUri("acl=")
         .getBucketAcl();
   }
 
-  public Response deleteBucket(BucketModel bucketModel) {
+  private Response deleteBucket(BucketModel bucketModel) {
     return commonRequest(bucketModel.getBucketName()).setCanonicalUri("")
         .deleteBucket();
   }
